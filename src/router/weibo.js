@@ -4,7 +4,7 @@ const { body, validationResult } = require('express-validator');
 const router = express.Router()
 const models = require('../../database/models')
 
-router.post('/create',[body('content').exists()], async (req, res, next) => {
+router.post('/create',[body('content').isString().notEmpty()], async (req, res, next) => {
     try {
         const errors = validationResult(req)
         if(!errors.isEmpty()) {
